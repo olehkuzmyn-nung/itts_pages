@@ -206,12 +206,12 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .btn-primary {
+        .rimary {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
         }
 
-        .btn-primary:hover {
+        .rimary:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
         }
@@ -473,7 +473,7 @@
                         <li>Пройти нормоконтроль, усунути всі правки</li>
                         <li>Отримати підпис нормоконтролера на титульній сторінці</li>
                     </ul>
-                    <a href="#" class="btn btn-primary">📅 Переглянути графік консультацій</a>
+                    <button id="openModalBtn" class="btn btn-primary">📅 Переглянути графік консультацій</button>
                     
                     <div class="warning-box">
                         <div>
@@ -603,5 +603,55 @@
             </div>
         </div>
     </div>
+    <!-- Модальне вікно за допомогою тегу <dialog> -->
+<dialog id="consultationModal" style="border: none; border-radius: 8px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); max-width: 400px; width: 100%;">
+  
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+    <h3 style="margin: 0; font-size: 1.2rem;">📅 Графік консультацій</h3>
+    <!-- Кнопка закриття (хрестик) -->
+    <button id="closeModalBtn" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; line-height: 1;">&times;</button>
+  </div>
+  
+  <!-- Вміст вікна -->
+  <div style="margin-bottom: 20px; line-height: 1.6;">
+    <p><strong>Понеділок:</strong> 10:00 – 13:00</p>
+    <p><strong>Середа:</strong> 14:00 – 17:00</p>
+    <p><strong>П'ятниця:</strong> 11:00 – 15:00</p>
+  </div>
+
+  <div style="text-align: right;">
+    <button id="closeModalBottomBtn" style="padding: 8px 16px; background-color: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer;">Закрити</button>
+  </div>
+</dialog>
+
+<!-- Скрипт для логіки роботи вікна -->
+<script>
+  const modal = document.getElementById('consultationModal');
+  const openBtn = document.getElementById('openModalBtn');
+  const closeBtnX = document.getElementById('closeModalBtn');
+  const closeBtnBottom = document.getElementById('closeModalBottomBtn');
+
+  // Відкрити модальне вікно (метод showModal автоматично додає затемнення фону)
+  openBtn.addEventListener('click', () => {
+    modal.showModal();
+  });
+
+  // Закрити вікно при кліку на хрестик
+  closeBtnX.addEventListener('click', () => {
+    modal.close();
+  });
+
+  // Закрити вікно при кліку на кнопку внизу
+  closeBtnBottom.addEventListener('click', () => {
+    modal.close();
+  });
+
+  // Закрити вікно, якщо користувач клікає по затемненому фону навколо вікна
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.close();
+    }
+  });
+</script>
 </body>
 </html>
