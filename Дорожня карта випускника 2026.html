@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ФІНІШНА ПРЯМА: 5 КРОКІВ ДО ДИПЛОМА</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideDown 0.8s ease;
+        }
+
+        .main-title {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.95);
+            font-weight: 600;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .roadmap {
+            position: relative;
+        }
+
+        .roadmap::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary), var(--accent), var(--success), var(--warning));
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
+        .step {
+            position: relative;
+            margin-bottom: 40px;
+            animation: slideUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .step:nth-child(1) { animation-delay: 0.1s; }
+        .step:nth-child(2) { animation-delay: 0.2s; }
+        .step:nth-child(3) { animation-delay: 0.3s; }
+        .step:nth-child(4) { animation-delay: 0.4s; }
+        .step:nth-child(5) { animation-delay: 0.5s; }
+
+        .step-number {
+            position: absolute;
+            left: 30px;
+            top: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: white;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+            z-index: 10;
+            border: 4px solid white;
+        }
+
+        .step-content {
+            margin-left: 110px;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            border-left: 6px solid var(--primary);
+        }
+
+        .step:nth-child(2) .step-content { border-left-color: var(--secondary); }
+        .step:nth-child(3) .step-content { border-left-color: var(--accent); }
+        .step:nth-child(4) .step-content { border-left-color: var(--success); }
+        .step:nth-child(5) .step-content { border-left-color: var(--warning); }
+
+        .step-content:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.2);
+        }
+
+        .step-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .step-icon {
+            font-size: 2rem;
+        }
+
+        .responsible {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-weight: 700;
+            color: #92400e;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .step-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .step-list li {
+            padding: 12px 0 12px 40px;
+            position: relative;
+            font-size: 1.05rem;
+            color: #475569;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .step-list li:last-child {
+            border-bottom: none;
+        }
+
+        .step-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin: 8px 8px 8px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+        }
+
+        .btn-success:hover {
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, var(--warning), #d97706);
+            color: white;
+        }
+
+        .btn-warning:hover {
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            border-left: 5px solid var(--danger);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            color: #991b1b;
+            font-weight: 700;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .warning-box::before {
+            content: '⚠️';
+            font-size: 1.5rem;
+        }
+
+        .requirements-box {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 2px solid #0ea5e9;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .requirements-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #0369a1;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .requirements-list {
+            list-style: none;
+        }
+
+        .requirements-list li {
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .no-archive {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 900;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .deadline-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .deadline-card {
+            background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+            border: 3px solid #8b5cf6;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .deadline-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .deadline-date {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #7c3aed;
+            margin-bottom: 10px;
+        }
+
+        .deadline-text {
+            color: #5b21b6;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .email-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .email-label {
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .email-link {
+            color: #b45309;
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-bottom: 3px dashed #b45309;
+            padding-bottom: 3px;
+        }
+
+        .email-link:hover {
+            color: #78350f;
+        }
+
+        .regulation {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #64748b;
+            font-style: italic;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px dashed #cbd5e1;
+        }
+
+        .final-banner {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+            padding: 50px;
+            border-radius: 25px;
+            text-align: center;
+            margin-top: 50px;
+            box-shadow: 0 25px 70px rgba(16, 185, 129, 0.4);
+            animation: celebrate 1s ease;
+        }
+
+        @keyframes celebrate {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .final-banner h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .final-banner p {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+        }
+
+        .dates-box {
+            background: rgba(255,255,255,0.25);
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 15px;
+            font-weight: 800;
+            font-size: 1.4rem;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .main-title { font-size: 2rem; }
+            .roadmap::before { left: 30px; }
+            .step-number { left: 10px; width: 50px; height: 50px; font-size: 1.4rem; }
+            .step-content { margin-left: 80px; padding: 20px; }
+            .deadline-grid { grid-template-columns: 1fr; }
+            .step-title { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="main-title">🎓 ФІНІШНА ПРЯМА: 5 КРОКІВ ДО ДИПЛОМА</h1>
+            <p class="subtitle">Дорожня карта випускника ІТТС 2026</p>
+        </header>
+
+        <div class="roadmap">
+            <!-- Step 1 -->
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3 class="step-title">
+                        <span class="step-icon">📝</span>
+                        Погодження з науковим керівником
+                    </h3>
+                    <ul class="step-list">
+                        <li>Подати повний текст БР науковому керівнику</li>
+                        <li>Отримати письмовий відгук (рецензія керівника)</li>
+                        <li>Усунути всі зауваження, отримати «добро» на подачу до нормоконтролю</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content" style="border-left-color: var(--secondary);">
+                    <h3 class="step-title">
+                        <span class="step-icon">📐</span>
+                        Нормоконтроль
+                    </h3>
+                    <div class="responsible">
+                        <span>👤</span>
+                        Відповідальний: Возний Андрій Володимирович
+                    </div>
+                    <ul class="step-list">
+                        <li>Зв'язатись із викладачем — узгодити термін і час</li>
+                        <li>Пройти нормоконтроль, усунути всі правки</li>
+                        <li>Отримати підпис нормоконтролера на титульній сторінці</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">📅 Переглянути графік консультацій</a>
+                    
+                    <div class="warning-box">
+                        <div>
+                            <strong>УВАГА!</strong><br>
+                            Лише після нормоконтролю — надсилати на антиплагіат.<br>
+                            <span style="color: var(--danger); font-size: 1.1rem;">
+                                Після перевірки антиплагіатом жодних змін у текст вносити не можна!
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content" style="border-left-color: var(--accent);">
+                    <h3 class="step-title">
+                        <span class="step-icon">🛡️</span>
+                        Антиплагіат + репозитарій
+                    </h3>
+                    <div class="responsible" style="background: linear-gradient(135deg, #fce7f3, #fbcfe8); color: #9d174d;">
+                        <span>👤</span>
+                        Уповноважена особа: доц. Штаєр Л. О.
+                    </div>
+
+                    <div class="email-box" style="background: linear-gradient(135deg, #dbeafe, #bfdbfe); border-color: #3b82f6;">
+                        <div class="email-label">📧 Надсилати на ел. пошту:</div>
+                        <a href="mailto:lidiia.shtaier@nung.edu.ua" class="email-link" style="color: #1e40af; border-color: #1e40af;">
+                            lidiia.shtaier@nung.edu.ua
+                        </a>
+                    </div>
+
+                    <ul class="step-list">
+                        <li>Надіслати остаточний варіант БР з <strong>корпоративної пошти</strong> уповноваженій особі кафедри</li>
+                        <li>Термін надсилання — не пізніше ніж за <strong>8 робочих днів</strong> до дати захисту</li>
+                        <li>Уповноважена особа перевіряє роботу протягом 3 робочих днів</li>
+                        <li>Отримати звіт — ознайомитись з результатами</li>
+                        <li>Підготувати матеріали для репозитарію згідно з вимогами</li>
+                        <li>Завантажити готові матеріали для репозитарію секретарю ЕК Криль М. О.</li>
+                    </ul>
+
+                    <div class="requirements-box">
+                        <div class="requirements-title">📦 Вимоги до матеріалів:</div>
+                        <ol class="requirements-list">
+                            <li>Реєстраційна форма БР (формат - word)</li>
+                            <li>Повна версія кваліфікованої роботи — починаючи від титулу і закінчення додатки (формат - pdf)</li>
+                            <li>Звіт антиплагіатної системи</li>
+                            <li>Презентація</li>
+                            <li>За наявності плакати</li>
+                        </ol>
+                        <div class="no-archive">
+                            ⛔ НІЧОГО НЕ АРХІВУЄМО !!!!!!
+                        </div>
+                    </div>
+
+                    <div style="margin: 25px 0;">
+                        <a href="#" class="btn btn-primary">📄 Файл з вимогами</a>
+                        <a href="#" class="btn btn-success">📝 Реєстраційна форма</a>
+                        <a href="#" class="btn btn-warning">📷 Приклад (файл заповненої форми)</a>
+                    </div>
+
+                    <div class="email-box">
+                        <div class="email-label">📨 Завантажити матеріали секретарю ЕК:</div>
+                        <div style="margin-bottom: 8px; font-weight: 700; color: #92400e;">Криль М. О.</div>
+                        <a href="mailto:mariana.kryl@nung.edu.ua" class="email-link">
+                            mariana.kryl@nung.edu.ua
+                        </a>
+                    </div>
+
+                    <div class="deadline-grid">
+                        <div class="deadline-card">
+                            <div class="deadline-date">📅 Якщо захист 18.06.26</div>
+                            <div class="deadline-text">Надіслати до<br><strong>5 червня</strong></div>
+                        </div>
+                        <div class="deadline-card">
+                            <div class="deadline-date">📅 Якщо захист 23.06.26</div>
+                            <div class="deadline-text">Надіслати до<br><strong>10 червня</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="regulation">
+                        Наказ №284 від 02.10.2025 (п. 7.1–7.2)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content" style="border-left-color: var(--success);">
+                    <h3 class="step-title">
+                        <span class="step-icon">🖨️</span>
+                        Роздрукована ПЗ — на кафедру
+                    </h3>
+                    <ul class="step-list">
+                        <li>Роздрукувати та оправити пояснювальну записку (ПЗ) БР</li>
+                        <li>Принести на кафедру для збору підписів (керівник, нормоконтролер, завідувач кафедри) в <strong>ауд. 1307</strong></li>
+                        <li>Підписи зібрано — робота готова до захисту</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content" style="border-left-color: var(--warning);">
+                    <h3 class="step-title">
+                        <span class="step-icon">🎉</span>
+                        Допуск до захисту отримано!
+                    </h3>
+                    <ul class="step-list">
+                        <li>Усі 4 кроки виконано!</li>
+                        <li>Підготувати презентацію до захисту</li>
+                        <li>Перевірити готовність всіх матеріалів</li>
+                        <li>Налаштуватися на успішний захист!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="final-banner">
+            <h2>🏆 Вітаємо з успішним проходженням!</h2>
+            <p>Ти готовий до захисту бакалаврської роботи!</p>
+            <div class="dates-box">
+                📅 Захисти БР: 18 – 23 червня 2026 р.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
